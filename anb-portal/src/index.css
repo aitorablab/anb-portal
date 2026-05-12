@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+* { font-family: 'Outfit', sans-serif; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #f2f6ee;
+  background-image:
+    radial-gradient(circle at 15% 15%, rgba(100,160,40,0.08) 0%, transparent 55%),
+    radial-gradient(circle at 85% 85%, rgba(70,130,30,0.06) 0%, transparent 55%);
+}
+
+@keyframes heroZoom {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.07); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes borderSpin {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 300% 0%; }
+}
+
+.hero-img  { animation: heroZoom 14s ease-in-out infinite alternate; }
+.fade-up   { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+.fade-up-1 { animation-delay: 0.1s; }
+.fade-up-2 { animation-delay: 0.25s; }
+.fade-up-3 { animation-delay: 0.4s; }
+.fade-in   { opacity: 0; animation: fadeIn 0.4s ease forwards; }
+
+@keyframes borderSlide {
+  0%   { background-position: 200% 0%; }
+  100% { background-position: -200% 0%; }
+}
+
+.card-animated-border {
+  position: relative;
+  border-radius: 16px;
+}
+.card-animated-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  background: linear-gradient(90deg, transparent, #5a9a28, #ffffff, #5a9a28, transparent);
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+  z-index: 0;
+  animation: borderSlide 5s linear infinite;
+}
+.card-animated-border.disabled::before {
+  background: linear-gradient(90deg, transparent, #94a3b8, #e2e8f0, #94a3b8, transparent);
+}
+.card-animated-border:hover::before { opacity: 1; }
+.card-inner {
+  position: relative;
+  z-index: 1;
+  background: white;
+  border-radius: 14px;
+  height: 100%;
+}
